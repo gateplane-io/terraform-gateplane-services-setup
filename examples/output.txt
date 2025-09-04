@@ -1,15 +1,18 @@
 {
-  "net" = "http://192.168.56.101:8200/v1/identity/oidc/provider/gateplane/.well-known/keys"
+  "net" = {
+    "audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
+    "jwks_uri" = "https://vault.example.com:8200/v1/identity/oidc/provider/gateplane/.well-known/keys"
+  }
   "no-net" = {
     "audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
-    "keystore" = "{\"keys\":[{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"30cf4ac4-4052-c9d6-ce84-68d506c39459\",\"kty\":\"RSA\",\"n\":\"zitzVsGyC3pX9IsqDhn[eWZKmqUP65Hvy6FvzJY1j8UrvHngwMhdPuJlsXITrYh3m_k-zUwaMpMd
-    TZR9QSA_KxT4fAWp0kQuPD5_ijuUnMx4p9TgsKPL5rAP7i97MnYXSPyQW312IrfnovgLTiQpIQ2I6Sv66LFWrd_udZkOJbVOChK2OIBZiXo2eEbFKtmLIyKhnv8WOUJlDSM8HgpFQ3eJ1zXuwYfyU1HA7HM4DwRajC_42UTQDISgJoDXNUmlaAKEXho0hwBv1OzjRgV2IvN-4mj2HF5
-    zp7ysh0Gc84FRHDCXcq4V6s0b8RHe4TiZUqsmrVR6gK6EeDy2HP3EksQ\",\"use\":\"sig\"},{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"bc7015bf-9c92-75d6-f777-d6eeaee06723\",\"kty\":\"RSA\",\"n\":\"02c9ReStd82MHRx-_ziL8_GMGK70
-    frBCRB1AXs292pHSCfgxJy4ExIm2WFIRFx-H3ckVhbcbVTpN_pMDGbe-uy9JBF60RFyfj9LgGFJ8cgrPNHGdVNxYPThqJdOJLmyVYwJ6awZZm5CG-c5ke4wMfdiZ2Wbkny1lqL4FeomZ-cNACoSccGfgfGE2wonh78XzWGN7sEyPAZfCM4uEe9HbycZjNXnLRphvvS0HVj5rznrlaZm
-    NvS0IRx4yehdTGzuD7ltxSIkD6kBC5eTtXf2gjprRSrU_Nuhopp2uKugiztAKoDbELXj4Qn_LnjyL0b-PEKHCDeoysfscaB4mKnbSFw\",\"use\":\"sig\"}]}]"
+    "keystore" = "{\"keys\":[{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"30cf4ac4-4052-c9d6-ce84-68d506c39459\",\"kty\":\"RSA\",\"n\":\"zitzVsGyC3pX9IsqDhneWZKmqUP65Hvy6FvzJY1j8UrvHngwMhdPuJlsXITrYh3m_k-zUwaMpMd
+TZR9QSA_KxT4fAWp0kQuPD5_ijuUnMx4p9TgsKPL5rAP7i97MnYXSPyQW312IrfnovgLTiQpIQ2I6Sv66LFWrd_udZkOJbVOChK2OIBZiXo2eEbFKtmLIyKhnv8WOUJlDSM8HgpFQ3eJ1zXuwYfyU1HA7HM4DwRajC_42UTQDISgJoDXNUmlaAKEXho0hwBv1OzjRgV2IvN-4mj2HF5
+zp7ysh0Gc84FRHDCXcq4V6s0b8RHe4TiZUqsmrVR6gK6EeDy2HP3EksQ\",\"use\":\"sig\"},{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"bc7015bf-9c92-75d6-f777-d6eeaee06723\",\"kty\":\"RSA\",\"n\":\"02c9ReStd82MHRx-_ziL8_GMGK70
+frBCRB1AXs292pHSCfgxJy4ExIm2WFIRFx-H3ckVhbcbVTpN_pMDGbe-uy9JBF60RFyfj9LgGFJ8cgrPNHGdVNxYPThqJdOJLmyVYwJ6awZZm5CG-c5ke4wMfdiZ2Wbkny1lqL4FeomZ-cNACoSccGfgfGE2wonh78XzWGN7sEyPAZfCM4uEe9HbycZjNXnLRphvvS0HVj5rznrlaZm
+NvS0IRx4yehdTGzuD7ltxSIkD6kBC5eTtXf2gjprRSrU_Nuhopp2uKugiztAKoDbELXj4Qn_LnjyL0b-PEKHCDeoysfscaB4mKnbSFw\",\"use\":\"sig\"}]}"
   }
   "webui" = {
-    "OpenID Connect Audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
     "identity_provider_name" = "gateplane"
+    "openid_connect_audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
   }
 }
