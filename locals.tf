@@ -21,11 +21,14 @@ ${
 JSON
 
 webui_configuration = {
-  "OpenID Connect Audience" = vault_identity_oidc_client.this.client_id,
+  "openid_connect_audience" = vault_identity_oidc_client.this.client_id,
   "identity_provider_name"  = vault_identity_oidc_provider.this.name
 }
 
-services_jwks_uri = data.vault_identity_oidc_openid_config.this.jwks_uri
+services_jwks_uri = {
+  "audience" = vault_identity_oidc_client.this.client_id,
+  "jwks_uri" = data.vault_identity_oidc_openid_config.this.jwks_uri,
+}
 services_idp_details = {
   "audience" = vault_identity_oidc_client.this.client_id,
   "keystore" = jsonencode({ "keys" = data.vault_identity_oidc_public_keys.this.keys })
