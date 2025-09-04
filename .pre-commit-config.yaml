@@ -15,7 +15,7 @@ repos:
     hooks:
       - id: reuse
         name: Add License Headers
-        files: '.*.tf'
+        files: '^[^/.]+.tf'
         pass_filenames: true
         args:
           - annotate

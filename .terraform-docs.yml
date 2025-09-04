@@ -16,7 +16,32 @@ content: |-
   # Vault/OpenBao setup for GatePlane Services
   ![License: ElasticV2](https://img.shields.io/badge/ElasticV2-green?style=flat-square&label=license&cacheSeconds=3600&link=https%3A%2F%2Fwww.elastic.co%2Flicensing%2Felastic-license)
 
-  ## How to enable the GatePlane Services
+  ## How to use
+
+  ### Team
+  Call the module as below for the Team tier:
+  ```hcl
+  {{ include "examples/team/main.tf" }}
+  ```
+
+  ### Enterprise
+  Additionally set the custom GatePlane WebUI domain for Enterprise tier:
+  ```hcl
+  {{ include "examples/enterprise/main.tf" }}
+  ```
+
+  The output will look like below:
+  ```hcl
+  {{ include "examples/output.txt" }}
+  ```
+
+  * The values under `net` must be submitted GatePlane Services if the Vault/OpenBao instance **can accept** Internet connections
+
+  * The values under `no-net` must be submitted in case Vault/OpenBao instance is inaccessible from the Internet, located in an **internal network**, or is **air-gapped**.
+
+  * [Team tier] The `web-ui` values must be set to the *Configuration* tab of the [GatePlane WebUI](https://app.gateplane.io) (Enterprise users do not need to do that).
+
+  ## How to enable GatePlane Services
 
   After using this module, send the output field `full_output` to [`services@gateplane.io`](mailto:services@gateplane.io).
 

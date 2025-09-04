@@ -1,7 +1,84 @@
 # Vault/OpenBao setup for GatePlane Services
 ![License: ElasticV2](https://img.shields.io/badge/ElasticV2-green?style=flat-square&label=license&cacheSeconds=3600&link=https%3A%2F%2Fwww.elastic.co%2Flicensing%2Felastic-license)
 
-## How to enable the GatePlane Services
+## How to use
+
+### Team
+Call the module as below for the Team tier:
+```hcl
+module "gateplane_services" {
+  source = "github.com/gateplane-io/terraform-gateplane-services-setup?ref=0.1.0"
+
+  // replace this with the location of the Vault/OpenBao instance
+  issuer_host = "vault.example.com:8200"
+
+  // The Vault/OpenBao Entity metadata field where the SlackID of each user resides
+  messenger_entity_metadata = ["slack_id"]
+
+  /*
+    You can explicitly set which users take up the license seats,
+    or omit to allow everyone in Vault/OpenBao to connect
+  allowed_entities = [
+    # Vault/OpenBao Entity IDs:
+    "c15cfc49-ecb1-4771-9b86-3139d8f37223",
+    "0b9faf28-e043-45ef-8cc3-9ad83123af20",
+    ...
+  ]
+  */
+}
+
+output "gateplane_services_output" {
+  value = module.gateplane_services.full_output
+}
+```
+
+### Enterprise
+Additionally set the custom GatePlane WebUI domain for Enterprise tier:
+```hcl
+module "gateplane_services" {
+  source = "github.com/gateplane-io/terraform-gateplane-services-setup?ref=0.1.0"
+
+  // replace this with the location of the Vault/OpenBao instance
+  issuer_host = "vault.example.com:8200"
+
+  // The Vault/OpenBao Entity metadata field where the MSTeams of each user resides
+  messenger_entity_metadata = ["msteams_id"]
+
+  // The custom subdomain of the WebUI assigned to the Enterprise
+  gateplane_webui_domain = "myorg.app.gateplane.io"
+}
+
+output "gateplane_services_output" {
+  value = module.gateplane_services.full_output
+}
+```
+
+The output will look like below:
+```hcl
+{
+  "net" = "http://192.168.56.101:8200/v1/identity/oidc/provider/gateplane/.well-known/keys"
+  "no-net" = {
+    "audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
+    "keystore" = "{\"keys\":[{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"30cf4ac4-4052-c9d6-ce84-68d506c39459\",\"kty\":\"RSA\",\"n\":\"zitzVsGyC3pX9IsqDhn[eWZKmqUP65Hvy6FvzJY1j8UrvHngwMhdPuJlsXITrYh3m_k-zUwaMpMd
+    TZR9QSA_KxT4fAWp0kQuPD5_ijuUnMx4p9TgsKPL5rAP7i97MnYXSPyQW312IrfnovgLTiQpIQ2I6Sv66LFWrd_udZkOJbVOChK2OIBZiXo2eEbFKtmLIyKhnv8WOUJlDSM8HgpFQ3eJ1zXuwYfyU1HA7HM4DwRajC_42UTQDISgJoDXNUmlaAKEXho0hwBv1OzjRgV2IvN-4mj2HF5
+    zp7ysh0Gc84FRHDCXcq4V6s0b8RHe4TiZUqsmrVR6gK6EeDy2HP3EksQ\",\"use\":\"sig\"},{\"alg\":\"RS256\",\"e\":\"AQAB\",\"kid\":\"bc7015bf-9c92-75d6-f777-d6eeaee06723\",\"kty\":\"RSA\",\"n\":\"02c9ReStd82MHRx-_ziL8_GMGK70
+    frBCRB1AXs292pHSCfgxJy4ExIm2WFIRFx-H3ckVhbcbVTpN_pMDGbe-uy9JBF60RFyfj9LgGFJ8cgrPNHGdVNxYPThqJdOJLmyVYwJ6awZZm5CG-c5ke4wMfdiZ2Wbkny1lqL4FeomZ-cNACoSccGfgfGE2wonh78XzWGN7sEyPAZfCM4uEe9HbycZjNXnLRphvvS0HVj5rznrlaZm
+    NvS0IRx4yehdTGzuD7ltxSIkD6kBC5eTtXf2gjprRSrU_Nuhopp2uKugiztAKoDbELXj4Qn_LnjyL0b-PEKHCDeoysfscaB4mKnbSFw\",\"use\":\"sig\"}]}]"
+  }
+  "webui" = {
+    "OpenID Connect Audience" = "w7bSkpV5Ndie9q027ziVeO8v90B5ePPE"
+    "identity_provider_name" = "gateplane"
+  }
+}
+```
+
+* The values under `net` must be submitted GatePlane Services if the Vault/OpenBao instance **can accept** Internet connections
+
+* The values under `no-net` must be submitted in case Vault/OpenBao instance is inaccessible from the Internet, located in an **internal network**, or is **air-gapped**.
+
+* [Team tier] The `web-ui` values must be set to the *Configuration* tab of the [GatePlane WebUI](https://app.gateplane.io) (Enterprise users do not need to do that).
+
+## How to enable GatePlane Services
 
 After using this module, send the output field `full_output` to [`services@gateplane.io`](mailto:services@gateplane.io).
 
