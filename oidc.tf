@@ -20,7 +20,7 @@ resource "vault_identity_oidc_client" "this" {
   key  = vault_identity_oidc_key.this.name
   redirect_uris = [
     "https://192.168.56.101:5173/oidc/callback", # Reserved for testing
-    "https://localhost:45450/oidc/callback",     # Reserved for the CLI
+    "http://localhost:45450/oidc/callback",      # Reserved for the CLI
     "https://${var.gateplane_webui_domain}/oidc/callback",
   ]
   assignments = var.allowed_entities
